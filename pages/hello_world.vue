@@ -3,10 +3,9 @@
     <div>
       <app-logo/>
       <div>
-        <button @click="load">ボタンだぞ</button>
+        <button @click="fetch">fetchする</button>
       </div>
       <div>{{content}}</div>
-      <div>{{loading}}</div>
       <div class="loading-view" v-if="loading">
         <p>Loading...</p>
       </div>
@@ -19,6 +18,8 @@
   import TestComponent from '~/components/TestComponent.vue'
   import AppLogo from '~/components/AppLogo.vue'
   import RxTest from '~/components/RxTest.vue'
+  // Ajax通信ライブラリ
+  import axios from 'axios';
 
   export default {
     data: () => ({
@@ -30,14 +31,20 @@
     components: {
       TestComponent,
       AppLogo,
-      RxTest
+      RxTest,
     },
 
     methods: {
-      load: function () {
+      fetch: function(){
         this.loading = true;
-        this.content = "button clicked";
-      },
+
+        axios
+          .get('https://api.coindesk.com/v1/bpi/currentprice.json')
+          .then(response => {
+            this.content = response;
+            this.loading = false;
+          })
+      }
     }
   }
 </script>
