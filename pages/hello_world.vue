@@ -2,9 +2,19 @@
   <section class="container">
     <div>
       <app-logo/>
-      <h1 class="title">
-        光あれ
-      </h1>
+      <test-component/>
     </div>
   </section>
 </template>
+
+<script>
+  import TestComponent from '~/components/TestComponent.vue'
+  import AppLogo from '~/components/AppLogo.vue'
+
+  export default {
+    components: {
+      TestComponent,
+      AppLogo
+    }
+  }
+</script>
