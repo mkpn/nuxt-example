@@ -51,3 +51,48 @@
     }
   }
 </script>
+
+<style lang="scss">
+  body {
+    padding: 0 10px;
+  }
+
+  #qiita-posts {
+    h1 {
+      margin-bottom: 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    button {
+      margin-bottom: 10px;
+      padding: 4px 10px;
+      color: #fff;
+      font-size: 0.75rem;
+      background: #325d7c;
+      border: none;
+      border-radius: 2px;
+      box-shadow: 0 4px 0 darken(#325d7c, 4%);
+      cursor: pointer;
+    }
+
+    li {
+      margin-bottom: 15px;
+      line-height: 1.5;
+
+      .tag {
+        display: inline-block;
+        margin: 0 1px 6px;
+        padding: 2px 6px;
+        color: #fff;
+        font-size: 0.75rem;
+        background: #7daaca;
+      }
+
+      a {
+        color: darken(#7daaca, 24%);
+      }
+    }
+  }
+
+</style>
