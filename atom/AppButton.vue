@@ -1,5 +1,5 @@
 <template>
-  <button @click="fetch">{{label}}</button>
+  <button>{{buttonLabel}}</button>
 </template>
 
 <script>
@@ -9,7 +9,10 @@
       return {}
     },
     props: {
-      buttonLabel: String
+      buttonLabel: {
+        type: String,
+        default: "デフォルト"
+      },
     }
   }
 </script>
