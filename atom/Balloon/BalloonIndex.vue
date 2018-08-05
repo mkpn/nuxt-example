@@ -5,13 +5,13 @@
 
 <script>
   export default {
+    name: "BalloonIndex.vue",
     props: {
       balloonLabel: {
         type: String,
         default: "デフォルト"
       },
     },
-    name: "BalloonIndex.vue"
   }
 </script>
 
