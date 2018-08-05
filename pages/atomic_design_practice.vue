@@ -7,8 +7,8 @@
 </template>
 
 <script>
-  import Balloon from '~/atom/Balloon/balloon_index.vue';
-  import MyImg from '~/atom/Image/image_index.vue';
+  import Balloon from '~/atom/Balloon/BalloonIndex.vue';
+  import MyImg from '~/atom/Image/ImageIndex.vue';
 
   export default {
     name: "atomic_design_practice",

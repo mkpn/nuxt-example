@@ -21,7 +21,7 @@
   import RxTest from '~/components/RxTest.vue'
   // Ajax通信ライブラリ
   import axios from 'axios'
-  import Balloon from '~/atom/Balloon/balloon_index.vue'
+  import Balloon from '~/atom/Balloon/BalloonIndex.vue'
 
   export default {
     data: () => ({

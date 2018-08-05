@@ -11,7 +11,7 @@
         default: "デフォルト"
       },
     },
-    name: "balloon_index.vue"
+    name: "BalloonIndex.vue"
   }
 </script>
 
