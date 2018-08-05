@@ -11,6 +11,7 @@
       </div>
     </div>
     <rx-test/>
+    <balloon balloon-label="削除する"/>
   </section>
 </template>
 
@@ -19,7 +20,8 @@
   import AppLogo from '~/components/AppLogo.vue'
   import RxTest from '~/components/RxTest.vue'
   // Ajax通信ライブラリ
-  import axios from 'axios';
+  import axios from 'axios'
+  import Balloon from '~/atom/Balloon/balloon_index.vue'
 
   export default {
     data: () => ({
@@ -32,6 +34,7 @@
       TestComponent,
       AppLogo,
       RxTest,
+      Balloon,
     },
 
     methods: {
