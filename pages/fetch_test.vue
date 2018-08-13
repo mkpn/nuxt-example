@@ -13,7 +13,7 @@
       <div>{{ updatedIso }}</div>
       <div>{{ updateduk }}</div>
       <div class="loading-view" v-if="isLoading">
-      <p>Loading...</p>
+        <p>Loading...</p>
       </div>
     </div>
     <div class="search-form">
@@ -30,7 +30,7 @@
   import AppHeader from '../atom/AppHeader.vue'
   import RxTest from '~/components/RxTest.vue'
 
-  import { mapGetters } from 'vuex';
+  import {mapGetters, mapActions} from 'vuex';
 
   export default {
     components: {
@@ -42,20 +42,18 @@
     },
 
     computed: {
-      // ゲッターを、スプレッド演算子（object spread operator）を使って computed に組み込む
       ...mapGetters([
-        'updated',
+        'updated', //updatedとthis.$store.getters.updatedをマッピングしてくれる
         'updatedIso',
         'updateduk',
         'isLoading',
         // ...
       ]),
     },
-
     methods: {
-      fetch: function () {
-        this.$store.dispatch('fetch');
-      }
+      ...mapActions([
+        'fetch'
+      ]),
     }
   }
 </script>
