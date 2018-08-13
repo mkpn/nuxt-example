@@ -5,37 +5,47 @@ import axios from 'axios';
 export var store = function () {
   return new Vuex.Store({
     state: {
-      time: null,
+      time: null, // 初期値ってどうするのが良いプラクティスなんだろ
       isLoading: false,
+      isError: false,
     },
 
     getters: {
-      isLoading: function (state) {
-        return state.isLoading;
-      },
-      updated: function (state) {
+      isLoading: state => state.isLoading,
+      isError: state => state.isError,
+      updated: state => {
         if (!state.time) return null;
         return state.time.updated;
       },
-      updatedIso: function (state) {
+      updatedIso: state => {
         if (!state.time) return null;
         return state.time.updatedIso;
       },
-      updateduk: function (state) {
+      updateduk: state => {
         if (!state.time) return null;
         return state.time.updateduk;
       },
     },
 
+    // TODO mutationってどんな命名アプローチがわかりやすいんだ・・・
     mutations: {
       startLoading: function (state) {
         state.time = null;
+        state.isError = false;
         state.isLoading = true;
       },
-      finishLoading: function (state, time) {
+
+      finishLoading: function (state) {
         state.isLoading = false;
+      },
+
+      setContent: function (state, time) {
         state.time = time;
-      }
+      },
+
+      caughtException: function (state) {
+        state.isError = true;
+      },
     },
 
     actions: {
@@ -45,8 +55,13 @@ export var store = function () {
           .get('https://api.coindesk.com/v1/bpi/currentprice.json')
           .then(function (response) {
             let time = new Time(response);
-            context.commit('finishLoading', time);
-          });
+            context.commit('setContent', time);
+          })
+          .catch(e => {
+            console.log(e);
+            context.commit('caughtException');
+          })
+          .finally(() => context.commit('finishLoading'));
       }
     }
   });

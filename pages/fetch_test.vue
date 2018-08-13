@@ -12,9 +12,15 @@
       <div>{{ updated }}</div>
       <div>{{ updatedIso }}</div>
       <div>{{ updateduk }}</div>
+
       <div class="loading-view" v-if="isLoading">
         <p>Loading...</p>
       </div>
+
+      <div class="loading-view" v-if="isError">
+        <p>Errorだよぉ！！！！</p>
+      </div>
+
     </div>
     <div class="search-form">
       <app-button/>
@@ -47,6 +53,7 @@
         'updatedIso',
         'updateduk',
         'isLoading',
+        'isError',
         // ...
       ]),
     },
