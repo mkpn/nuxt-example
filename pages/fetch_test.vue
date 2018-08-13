@@ -9,7 +9,7 @@
         <button @click="fetch">fetchする</button>
         <app-button button-label="アイウエオ"/>
       </div>
-      <div>{{content}}</div>
+      <div>{{weather_forecast}}</div>
       <div class="loading-view" v-if="loading">
         <p>Loading...</p>
       </div>
@@ -27,6 +27,8 @@
   import AppButton from '../atom/AppButton.vue'
   import AppHeader from '../atom/AppHeader.vue'
   import RxTest from '~/components/RxTest.vue'
+
+  import Time from '~/entity/Time.ts'
   // Ajax通信ライブラリ
   import axios from 'axios';
 
@@ -34,6 +36,7 @@
     data: () => ({
       loading: false,
       content: "content text",
+      weather_forecast: "content text",
       count: 0
     }),
 
@@ -46,15 +49,16 @@
     },
 
     methods: {
-      fetch: function(){
+      fetch: function () {
         this.loading = true;
 
         axios
           .get('https://api.coindesk.com/v1/bpi/currentprice.json')
           .then(response => {
-            this.content = response;
+            time = new Time(Response);
+            this.content = time.updated;
             this.loading = false;
-          })
+          });
       }
     }
   }
