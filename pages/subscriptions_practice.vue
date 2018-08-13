@@ -12,7 +12,7 @@
 
   export default {
     data: () => ({
-      loading: false,
+      isLoading: false,
       content: "content text",
       count: 0
     }),

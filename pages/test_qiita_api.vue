@@ -24,7 +24,7 @@
 
   export default {
     data: () => ({
-      loading: false,
+      isLoading: false,
       content: "content text",
       posts: [],
       count: 0

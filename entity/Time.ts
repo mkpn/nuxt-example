@@ -14,6 +14,5 @@ export default class Time {
     this.updated = timeObj.updated;
     this.updatedIso = timeObj.updatedIso;
     this.updateduk = timeObj.updateduk;
-    console.log(this);
   }
 }

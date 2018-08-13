@@ -9,11 +9,11 @@
         <button @click="fetch">fetchする</button>
         <app-button button-label="アイウエオ"/>
       </div>
-      <div>{{updated}}</div>
-      <div>{{updatedIso}}</div>
-      <div>{{updateduk}}</div>
-      <div class="loading-view" v-if="loading">
-        <p>Loading...</p>
+      <div>{{ updated }}</div>
+      <div>{{ updatedIso }}</div>
+      <div>{{ updateduk }}</div>
+      <div class="loading-view" v-if="isLoading">
+      <p>Loading...</p>
       </div>
     </div>
     <div class="search-form">
@@ -30,19 +30,9 @@
   import AppHeader from '../atom/AppHeader.vue'
   import RxTest from '~/components/RxTest.vue'
 
-  import Time from '../entity/Time'
-  // Ajax通信ライブラリ
-  import axios from 'axios';
+  import { mapGetters } from 'vuex';
 
   export default {
-    data: () => ({
-      loading: false,
-      updated: "",
-      updatedIso: "",
-      updateduk: "",
-      count: 0
-    }),
-
     components: {
       TestComponent,
       AppButton,
@@ -51,19 +41,20 @@
       RxTest,
     },
 
+    computed: {
+      // ゲッターを、スプレッド演算子（object spread operator）を使って computed に組み込む
+      ...mapGetters([
+        'updated',
+        'updatedIso',
+        'updateduk',
+        'isLoading',
+        // ...
+      ]),
+    },
+
     methods: {
       fetch: function () {
-        this.loading = true;
-
-        axios
-          .get('https://api.coindesk.com/v1/bpi/currentprice.json')
-          .then(response => {
-            let time = new Time(response);
-            this.updated = time.updated;
-            this.updatedIso = time.updatedIso;
-            this.updateduk = time.updateduk;
-            this.loading = false;
-          });
+        this.$store.dispatch('fetch');
       }
     }
   }
