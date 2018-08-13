@@ -1,33 +1,19 @@
-export class ForecastImage {
-  // "image": {
-  //   "width": 50,
-  //   "url": "http://weather.livedoor.com/img/icon/8.gif",
-  //   "title": "曇り",
-  //   "height": 31
-  // }
+export default class Time {
+  public updated: string = "";
+  public updatedIso: string = "";
+  public updateduk: string = "";
 
-  public updated: string = null;
-  public updatedIso: string = null;
-  public updateduk: string = null;
-
-  constructor(instanceData?: string) {
-    if (instanceData) {
-      this.deserialize(instanceData);
+  constructor(json?: any) {
+    if (json) {
+      this.deserialize(json);
     }
   }
 
-  private deserialize(instanceData: string) {
-    let obj = JSON.parse(instanceData);
-    this.updated = obj.url;
-    this.updatedIso = obj.updatedIso;
-    this.updateduk = obj.updateduk;
-    // Note this.active will not be listed in keys since it's declared, but not defined
-    // const keys = Object.keys(this);
-    //
-    // for (const key of keys) {
-    //   if (instanceData.hasOwnProperty(key)) {
-    //     this[key] = instanceData[key];
-    //   }
-    // }
+  private deserialize(json: any) {
+    let timeObj = json.data.time;
+    this.updated = timeObj.updated;
+    this.updatedIso = timeObj.updatedIso;
+    this.updateduk = timeObj.updateduk;
+    console.log(this);
   }
 }

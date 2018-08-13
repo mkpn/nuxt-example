@@ -34,5 +34,9 @@ module.exports = {
         })
       }
     }
-  }
+  },
+  modules: [
+    // "@nuxtjs/axios", 何これ
+    "~/modules/typescript.js"
+  ],
 }

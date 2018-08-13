@@ -10,15 +10,15 @@
 
 <script>
   export default {
-    name: 'MyHeader',
+    name: 'AppHeader',
     methods: {
-      nya () {
-        console.log('にゃー')
+      test () {
+        console.log('チェーック')
       }
     },
     created () {
-      this.nya()
-    }
+      this.test()
+    },
   }
 </script>
 

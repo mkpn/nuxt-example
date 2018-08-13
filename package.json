@@ -5,7 +5,7 @@
   "author": "neesan <exp.ym.lvl@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "nuxt -p 3333",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
@@ -19,6 +19,8 @@
     "rxjs": "^6.2.0",
     "rxjs-compat": "^6.1.0",
     "sass-loader": "^7.0.1",
+    "ts-loader": "^3.5.0",
+    "typescript": "^3.0.1",
     "vue-rx": "^5.0.0"
   },
   "devDependencies": {
