@@ -8,9 +8,9 @@
 </template>
 
 <script>
-  import Balloon from '~/atom/Balloon/BalloonIndex.vue';
-  import MyImg from '~/atom/Image/ImageIndex.vue';
-  import MyHeading from '~/atom/Heading/HeadingIndex.vue';
+  import Balloon from '../layouts/atom/Balloon/BalloonIndex.vue';
+  import MyImg from '../layouts/atom/Image/ImageIndex.vue';
+  import MyHeading from '../layouts/atom/Heading/HeadingIndex.vue';
 
   export default {
     name: "atomic_design_practice",

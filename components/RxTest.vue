@@ -21,7 +21,7 @@
 
     methods: {
       count_dog: function () {
-        Observable
+        Observable // TODO Single的なの使いたいわ〜
           .interval(1000)
           .filter((value) => value % 2 === 0)
           .subscribe((value) => this.count = value)

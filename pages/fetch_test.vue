@@ -16,7 +16,7 @@
 
       <li v-for="(weather, index) in weatherList"
           v-bind:key="index">
-        {{ weather.telop }}
+        <WeatherCard label="weather.label"/>
       </li>
       <div class="loading-view" v-if="isLoading">
         <p>Loading...</p>
@@ -27,9 +27,6 @@
       </div>
 
     </div>
-    <div class="search-form">
-      <app-button/>
-    </div>
     <rx-test/>
   </section>
 </template>
@@ -39,6 +36,7 @@
   import AppLogo from '~/components/AppLogo.vue'
   import AppButton from '../layouts/atom/AppButton.vue'
   import AppHeader from '../layouts/atom/AppHeader.vue'
+  import WeatherCard from '../layouts/moleculs/WeatherCard'
   import RxTest from '~/components/RxTest.vue'
 
   import {mapGetters, mapActions} from 'vuex';
@@ -49,6 +47,7 @@
       AppButton,
       AppHeader,
       AppLogo,
+      WeatherCard,
       RxTest,
     },
 
