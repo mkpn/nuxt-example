@@ -14,10 +14,13 @@
       <div>{{ updatedIso }}</div>
       <div>{{ updateduk }}</div>
 
-      <li v-for="(weather, index) in weatherList"
-          v-bind:key="index">
-        <WeatherCard label="weather.label"/>
-      </li>
+      <template v-for="(weather, index) in weatherList">
+        <WeatherCard
+          v-bind:key="index"
+          :weatherTelop="weather.telop"
+          :weatherIconUrl="weather.imageUrl"/>
+
+      </template>
       <div class="loading-view" v-if="isLoading">
         <p>Loading...</p>
       </div>
