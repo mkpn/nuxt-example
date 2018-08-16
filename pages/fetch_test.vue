@@ -37,8 +37,8 @@
 <script>
   import TestComponent from '~/components/TestComponent.vue'
   import AppLogo from '~/components/AppLogo.vue'
-  import AppButton from '../atom/AppButton.vue'
-  import AppHeader from '../atom/AppHeader.vue'
+  import AppButton from '../layouts/atom/AppButton.vue'
+  import AppHeader from '../layouts/atom/AppHeader.vue'
   import RxTest from '~/components/RxTest.vue'
 
   import {mapGetters, mapActions} from 'vuex';
