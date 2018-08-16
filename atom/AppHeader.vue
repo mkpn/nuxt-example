@@ -11,14 +11,6 @@
 <script>
   export default {
     name: 'AppHeader',
-    methods: {
-      test () {
-        console.log('チェーック')
-      }
-    },
-    created () {
-      this.test()
-    },
   }
 </script>
 

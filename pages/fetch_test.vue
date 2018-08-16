@@ -7,12 +7,17 @@
       <app-logo/>
       <div>
         <button @click="fetch">fetchする</button>
+        <button @click="fetchWeather">天気をfetchする</button>
         <app-button button-label="アイウエオ"/>
       </div>
       <div>{{ updated }}</div>
       <div>{{ updatedIso }}</div>
       <div>{{ updateduk }}</div>
 
+      <li v-for="(weather, index) in weatherList"
+          v-bind:key="index">
+        {{ weather.telop }}
+      </li>
       <div class="loading-view" v-if="isLoading">
         <p>Loading...</p>
       </div>
@@ -54,12 +59,14 @@
         'updateduk',
         'isLoading',
         'isError',
+        'weatherList',
         // ...
       ]),
     },
     methods: {
       ...mapActions([
-        'fetch'
+        'fetch',
+        'fetchWeather'
       ]),
     }
   }
