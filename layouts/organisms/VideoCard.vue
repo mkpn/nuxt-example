@@ -1,11 +1,9 @@
 <template>
   <div class="card">
     <div class="content">
-      <h3>{{ weatherTelop }}
-      </h3>
-      <p>Card which uses the background colour to show progress.</p>
-      <!--<p class="percentage">70%</p>-->
-      <MyImage :resourceUrl=weatherIconUrl />
+      <iframe width="560" height="315" src="videoSrc"
+              frameborder="0"
+              allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
   </div>
 </template>
@@ -19,15 +17,7 @@
       MyImage,
     },
     props: {
-      weatherTelop: {
-        type: String,
-        default: ""
-      },
-      weatherStatus: {
-        type: String,
-        default: "晴れ"
-      },
-      weatherIconUrl: {
+      videoSrc: {
         type: String,
         default: ""
       }

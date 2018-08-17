@@ -4,22 +4,10 @@
       <AppHeader/>
     </div>
     <div>
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/srH34Tjjo9U" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-      <app-logo/>
-      <div>
-        <button @click="fetch">fetchする</button>
-        <button @click="fetchWeather">天気をfetchする</button>
-        <app-button button-label="アイウエオ"/>
-      </div>
-      <div>{{ updated }}</div>
-      <div>{{ updatedIso }}</div>
-      <div>{{ updateduk }}</div>
-
-      <template v-for="(weather, index) in weatherList">
-        <WeatherCard
+      <template v-for="(video, index) in videoList">
+        <VideoCard
           v-bind:key="index"
-          :weatherTelop="weather.telop"
-          :weatherIconUrl="weather.imageUrl"/>
+          :videoSrc="video.src"/>
 
       </template>
       <div class="loading-view" v-if="isLoading">
@@ -40,7 +28,7 @@
   import AppLogo from '~/components/AppLogo.vue'
   import AppButton from '../layouts/atom/AppButton.vue'
   import AppHeader from '../layouts/atom/AppHeader.vue'
-  import WeatherCard from '../layouts/organisms/WeatherCard'
+  import VideoCard from '../layouts/organisms/VideoCard'
   import RxTest from '~/components/RxTest.vue'
 
   import {mapGetters, mapActions} from 'vuex';
@@ -51,8 +39,12 @@
       AppButton,
       AppHeader,
       AppLogo,
-      WeatherCard,
+      VideoCard,
       RxTest,
+    },
+    created() {
+      console.log("created!!")
+      this.fetchVideoList()
     },
 
     computed: {
@@ -62,14 +54,14 @@
         'updateduk',
         'isLoading',
         'isError',
-        'weatherList',
+        'videoList',
         // ...
       ]),
     },
     methods: {
       ...mapActions([
         'fetch',
-        'fetchWeather'
+        'fetchVideoList'
       ]),
     }
   }

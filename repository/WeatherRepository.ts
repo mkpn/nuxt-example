@@ -149,8 +149,8 @@ export default class WeatherRepository {
       "\"publicTime\": \"2018-08-16T16:34:00+0900\"\n" +
       "}\n" +
       "}"
-    let weatherOgj = JSON.parse(response)
-    return weatherOgj.forecasts.map((forecast) => new Weather(forecast));
+    let weatherObj = JSON.parse(response)
+    return weatherObj.forecasts.map((forecast) => new Weather(forecast));
   }
 }
 

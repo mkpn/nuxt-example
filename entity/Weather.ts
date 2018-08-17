@@ -12,6 +12,6 @@ export default class Weather {
   private deserialize(weatherObj: any) {
     this.dataLabel = weatherObj.dateLabel
     this.telop = weatherObj.telop
-    this.imageUrl = weatherObj.imageUrl
+    this.imageUrl = weatherObj.image.url
   }
 }

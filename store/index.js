@@ -36,9 +36,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 import Time from '../entity/Time';
 import axios from 'axios';
 import WeatherRepositroy from '../repository/WeatherRepository';
+import VideoRepositroy from '../repository/VideoRepository';
 export var state = function () { return ({
     time: new Time(),
     weatherList: [],
+    videoList: [],
     isLoading: false,
     isError: false,
 }); };
@@ -46,6 +48,7 @@ export var getters = {
     isLoading: function (state) { return state.isLoading; },
     isError: function (state) { return state.isError; },
     weatherList: function (state) { return state.weatherList; },
+    videoList: function (state) { return state.videoList; },
     updated: function (state) { return state.time.updated; },
     updatedIso: function (state) { return state.time.updatedIso; },
     updateduk: function (state) { return state.time.updateduk; },
@@ -64,6 +67,9 @@ export var mutations = {
     },
     setWeatherList: function (state, weatherList) {
         state.weatherList = weatherList;
+    },
+    setVideoList: function (state, videoList) {
+        state.videoList = videoList;
     },
     caughtException: function (state) {
         state.isError = true;
@@ -104,8 +110,27 @@ export var actions = {
                 context.commit('startLoading');
                 try {
                     wetherList = WeatherRepositroy.fetchWeatherList();
-                    console.log(wetherList);
                     context.commit('setWeatherList', wetherList);
+                }
+                catch (e) {
+                    console.log(e);
+                }
+                finally {
+                    context.commit('finishLoading');
+                }
+                return [2];
+            });
+        });
+    },
+    fetchVideoList: function (context) {
+        return __awaiter(this, void 0, void 0, function () {
+            var videoList;
+            return __generator(this, function (_a) {
+                console.log("fetchVideoList!!");
+                context.commit('startLoading');
+                try {
+                    videoList = VideoRepositroy.fetchVideoList();
+                    context.commit('setVideoList', videoList);
                 }
                 catch (e) {
                     console.log(e);

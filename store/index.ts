@@ -1,10 +1,12 @@
 import Time from '../entity/Time'
 import axios from 'axios'
 import WeatherRepositroy from '../repository/WeatherRepository'
+import VideoRepositroy from '../repository/VideoRepository'
 
 export const state = () => ({
   time: new Time(), // 初期値ってどうするのが良いプラクティスなんだろ
   weatherList: [],
+  videoList: [],
   isLoading: false,
   isError: false,
 })
@@ -15,6 +17,8 @@ export const getters = {
   isError: state => state.isError,
 
   weatherList: state => state.weatherList,
+
+  videoList: state => state.videoList,
 
   updated: state => state.time.updated,
 
@@ -42,6 +46,10 @@ export const mutations = {
     state.weatherList = weatherList
   },
 
+  setVideoList: function (state, videoList) {
+    state.videoList = videoList
+  },
+
   caughtException: function (state) {
     state.isError = true
   },
@@ -63,8 +71,20 @@ export const actions = {
     context.commit('startLoading')
     try {
       const wetherList = WeatherRepositroy.fetchWeatherList()
-      console.log(wetherList)
       context.commit('setWeatherList', wetherList)
+    } catch (e) {
+      console.log(e)
+    } finally {
+      context.commit('finishLoading')
+    }
+  },
+
+  fetchVideoList: async function (context) {
+    console.log("fetchVideoList!!")
+    context.commit('startLoading')
+    try {
+      const videoList = VideoRepositroy.fetchVideoList()
+      context.commit('setVideoList', videoList)
     } catch (e) {
       console.log(e)
     } finally {
