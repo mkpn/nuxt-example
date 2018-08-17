@@ -1,10 +1,10 @@
 <template>
   <div class="card">
-    <div class="content">
-      <iframe width="560" height="315" src="videoSrc"
-              frameborder="0"
-              allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    </div>
+    <iframe
+      class="content"
+      :src="videoSrc"
+      frameborder="0"
+      allow="autoplay; encrypted-media" allowfullscreen></iframe>
   </div>
 </template>
 
@@ -38,7 +38,7 @@
   }
 
   .content {
-    position: relative;
+    position: center;
   }
 
   @keyframes slideIn {

@@ -8,7 +8,6 @@
         <VideoCard
           v-bind:key="index"
           :videoSrc="video.src"/>
-
       </template>
       <div class="loading-view" v-if="isLoading">
         <p>Loading...</p>
@@ -19,7 +18,6 @@
       </div>
 
     </div>
-    <rx-test/>
   </section>
 </template>
 
@@ -29,7 +27,6 @@
   import AppButton from '../layouts/atom/AppButton.vue'
   import AppHeader from '../layouts/atom/AppHeader.vue'
   import VideoCard from '../layouts/organisms/VideoCard'
-  import RxTest from '~/components/RxTest.vue'
 
   import {mapGetters, mapActions} from 'vuex';
 
@@ -40,10 +37,8 @@
       AppHeader,
       AppLogo,
       VideoCard,
-      RxTest,
     },
     created() {
-      console.log("created!!")
       this.fetchVideoList()
     },
 

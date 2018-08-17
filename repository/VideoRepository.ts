@@ -1,7 +1,7 @@
 import Video from '../entity/Video'
 
 export default class VideoRepository {
-  public static fetchVideoList(): Video[] {
+  public static fetchVideoList(): [] {
     //return await axios.get('https://hoge')
     const response = "{\n" +
       "\"src_list\": [" +
