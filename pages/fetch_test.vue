@@ -4,7 +4,8 @@
       <AppHeader/>
     </div>
     <div>
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/srH34Tjjo9U" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/srH34Tjjo9U" frameborder="0"
+              allow="autoplay; encrypted-media" allowfullscreen></iframe>
       <app-logo/>
       <div>
         <button @click="fetch">fetchする</button>

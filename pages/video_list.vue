@@ -38,6 +38,12 @@
       AppLogo,
       VideoCard,
     },
+
+    async asyncData ({ app, params, store }) {
+      const label = '掲示板'
+      await store.dispatch('fetchVideoList')
+    },
+
     created() {
       this.fetchVideoList()
     },
