@@ -39,13 +39,9 @@
       VideoCard,
     },
 
-    async asyncData ({ app, params, store }) {
+    async asyncData({app, params, store}) {
       const label = '掲示板'
       await store.dispatch('fetchVideoList')
-    },
-
-    created() {
-      this.fetchVideoList()
     },
 
     computed: {
@@ -58,6 +54,10 @@
         'videoList',
         // ...
       ]),
+    },
+
+    created() {
+      // this.fetchVideoList()
     },
     methods: {
       ...mapActions([

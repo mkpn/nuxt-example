@@ -39,4 +39,5 @@ module.exports = {
     // "@nuxtjs/axios", 何これ
     "~/modules/typescript.js"
   ],
+  vendor: ['external_library']
 }
