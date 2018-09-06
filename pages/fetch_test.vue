@@ -36,7 +36,7 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
   import TestComponent from '~/components/TestComponent.vue'
   import AppLogo from '~/components/AppLogo.vue'
   import AppButton from '../layouts/atom/AppButton.vue'
@@ -74,4 +74,23 @@
       ]),
     }
   }
+
+  interface Res {
+    a: number;
+    b: string;
+    getHoge():string
+  }
+
+  function getResponse() :Res {
+
+    return {
+      a: 1,
+      b: "aaaa",
+      getHoge() {
+      }
+    }
+  }
+
+  const res = getResponse()
+
 </script>

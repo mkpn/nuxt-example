@@ -65,3 +65,11 @@ export const actions = {
     }
   }
 }
+
+export interface ITime {
+  updated: string
+  updatedIso: string
+  updateduk: string
+  addSecond()
+  addHour()
+}
