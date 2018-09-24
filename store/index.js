@@ -37,6 +37,7 @@ import Time from '../entity/Time';
 import axios from 'axios';
 import WeatherRepositroy from '../repository/WeatherRepository';
 import VideoRepositroy from '../repository/VideoRepository';
+import RakutenGamesRepository from '../repository/RakutenGamesRepository';
 export var state = function () { return ({
     time: new Time(),
     weatherList: [],
@@ -126,8 +127,6 @@ export var actions = {
         return __awaiter(this, void 0, void 0, function () {
             var videoList;
             return __generator(this, function (_a) {
-                console.log("fetchVideoList!!");
-                context.commit('startLoading');
                 try {
                     videoList = VideoRepositroy.fetchVideoList();
                     context.commit('setVideoList', videoList);
@@ -141,5 +140,21 @@ export var actions = {
                 return [2];
             });
         });
-    }
+    },
+    fetchRakutenGames: function (context) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                try {
+                    RakutenGamesRepository.fetchRaw();
+                }
+                catch (e) {
+                    console.log(e);
+                }
+                finally {
+                    context.commit('finishLoading');
+                }
+                return [2];
+            });
+        });
+    },
 };
