@@ -2,6 +2,7 @@ import Time from '../entity/Time'
 import axios from 'axios'
 import WeatherRepositroy from '../repository/WeatherRepository'
 import VideoRepositroy from '../repository/VideoRepository'
+import RakutenGamesRepository　from '../repository/RakutenGamesRepository'
 
 export const state = () => ({
   time: new Time(), // 初期値ってどうするのが良いプラクティスなんだろ
@@ -80,8 +81,6 @@ export const actions = {
   },
 
   fetchVideoList: async function (context) {
-    console.log("fetchVideoList!!")
-    context.commit('startLoading')
     try {
       const videoList = VideoRepositroy.fetchVideoList()
       context.commit('setVideoList', videoList)
@@ -90,5 +89,15 @@ export const actions = {
     } finally {
       context.commit('finishLoading')
     }
-  }
+  },
+
+  fetchRakutenGames: async function (context) {
+    try {
+      RakutenGamesRepository.fetchRaw()
+    } catch (e) {
+      console.log(e)
+    } finally {
+      context.commit('finishLoading')
+    }
+  },
 }
