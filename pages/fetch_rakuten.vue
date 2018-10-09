@@ -19,9 +19,16 @@
   import AppButton from '../layouts/atom/AppButton.vue'
   import RxTest from '~/components/RxTest.vue'
 
-  import {mapGetters, mapActions} from 'vuex';
+
+  import { mapGetters, mapActions } from 'vuex';
 
   export default {
+    async asyncData (store) {
+      try {
+        console.log(store.dispatch('fetchRakutenGames'))
+      } catch (e) {
+      }
+    },
     components: {
       TestComponent,
       AppButton,

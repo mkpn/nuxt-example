@@ -1,8 +1,5 @@
 <template>
   <section class="container">
-    <div class="main">
-      <AppHeader/>
-    </div>
     <div>
       <iframe width="560" height="315" src="https://www.youtube.com/embed/srH34Tjjo9U" frameborder="0"
               allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -36,61 +33,20 @@
   </section>
 </template>
 
-<script lang="ts">
-  import TestComponent from '~/components/TestComponent.vue'
-  import AppLogo from '~/components/AppLogo.vue'
-  import AppButton from '../layouts/atom/AppButton.vue'
-  import AppHeader from '../layouts/atom/AppHeader.vue'
+<script>
+  import AppLogo from '../components/AppLogo'
+  import RxTest from '../components/RxTest'
+  import TestComponent from '../components/TestComponent'
   import WeatherCard from '../layouts/organisms/WeatherCard'
-  import RxTest from '~/components/RxTest.vue'
-
-  import {mapGetters, mapActions} from 'vuex';
+  import AppButton from '../layouts/atom/AppButton'
 
   export default {
     components: {
-      TestComponent,
-      AppButton,
-      AppHeader,
       AppLogo,
-      WeatherCard,
+      TestComponent,
       RxTest,
-    },
-
-    computed: {
-      ...mapGetters([
-        'updated', //updatedとthis.$store.getters.updatedをマッピングしてくれる
-        'updatedIso',
-        'updateduk',
-        'isLoading',
-        'isError',
-        'weatherList',
-        // ...
-      ]),
-    },
-    methods: {
-      ...mapActions([
-        'fetch',
-        'fetchWeather'
-      ]),
+      WeatherCard,
+      AppButton,
     }
   }
-
-  interface Res {
-    a: number;
-    b: string;
-    getHoge():string
-  }
-
-  function getResponse() :Res {
-
-    return {
-      a: 1,
-      b: "aaaa",
-      getHoge() {
-      }
-    }
-  }
-
-  const res = getResponse()
-
 </script>

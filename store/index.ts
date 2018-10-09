@@ -8,6 +8,7 @@ export const state = () => ({
   time: new Time(), // 初期値ってどうするのが良いプラクティスなんだろ
   weatherList: [],
   videoList: [],
+  gameDataRaw: "",
   isLoading: false,
   isError: false,
 })
@@ -49,6 +50,12 @@ export const mutations = {
 
   setVideoList: function (state, videoList) {
     state.videoList = videoList
+  },
+
+  setGameDataRaw: function (state, gameDataRaw) {
+    state.gameDataRaw = gameDataRaw
+    console.log("ログだよ")
+    console.log(gameDataRaw)
   },
 
   caughtException: function (state) {
@@ -93,7 +100,8 @@ export const actions = {
 
   fetchRakutenGames: async function (context) {
     try {
-      RakutenGamesRepository.fetchRaw()
+      const gameDataRaw = RakutenGamesRepository.fetchRaw()
+      context.commit('setGameDataRaw', gameDataRaw)
     } catch (e) {
       console.log(e)
     } finally {
