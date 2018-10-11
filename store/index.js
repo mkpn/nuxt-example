@@ -38,10 +38,12 @@ import axios from 'axios';
 import WeatherRepositroy from '../repository/WeatherRepository';
 import VideoRepositroy from '../repository/VideoRepository';
 import RakutenGamesRepository from '../repository/RakutenGamesRepository';
+import Game from "~/entity/Game";
 export var state = function () { return ({
     time: new Time(),
     weatherList: [],
     videoList: [],
+    gameDataRaw: "",
     isLoading: false,
     isError: false,
 }); };
@@ -53,6 +55,13 @@ export var getters = {
     updated: function (state) { return state.time.updated; },
     updatedIso: function (state) { return state.time.updatedIso; },
     updateduk: function (state) { return state.time.updateduk; },
+    gameList: function (state) {
+        var games = [];
+        state.gameDataRaw.forEach(function (item) {
+            games.push(new Game(item.Item));
+        });
+        return games;
+    }
 };
 export var mutations = {
     startLoading: function (state) {
@@ -71,6 +80,9 @@ export var mutations = {
     },
     setVideoList: function (state, videoList) {
         state.videoList = videoList;
+    },
+    setGameDataRaw: function (state, gameDataRaw) {
+        state.gameDataRaw = gameDataRaw;
     },
     caughtException: function (state) {
         state.isError = true;
@@ -143,17 +155,25 @@ export var actions = {
     },
     fetchRakutenGames: function (context) {
         return __awaiter(this, void 0, void 0, function () {
+            var gameDataRaw, e_1;
             return __generator(this, function (_a) {
-                try {
-                    RakutenGamesRepository.fetchRaw();
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, 3, 4]);
+                        return [4, RakutenGamesRepository.fetchRaw()];
+                    case 1:
+                        gameDataRaw = _a.sent();
+                        context.commit('setGameDataRaw', gameDataRaw);
+                        return [3, 4];
+                    case 2:
+                        e_1 = _a.sent();
+                        console.log(e_1);
+                        return [3, 4];
+                    case 3:
+                        context.commit('finishLoading');
+                        return [7];
+                    case 4: return [2];
                 }
-                catch (e) {
-                    console.log(e);
-                }
-                finally {
-                    context.commit('finishLoading');
-                }
-                return [2];
             });
         });
     },

@@ -2,7 +2,8 @@ import Time from '../entity/Time'
 import axios from 'axios'
 import WeatherRepositroy from '../repository/WeatherRepository'
 import VideoRepositroy from '../repository/VideoRepository'
-import RakutenGamesRepository　from '../repository/RakutenGamesRepository'
+import RakutenGamesRepository from '../repository/RakutenGamesRepository'
+import Game from "~/entity/Game";
 
 export const state = () => ({
   time: new Time(), // 初期値ってどうするのが良いプラクティスなんだろ
@@ -27,6 +28,14 @@ export const getters = {
   updatedIso: state => state.time.updatedIso,
 
   updateduk: state => state.time.updateduk,
+
+  gameList(state) {
+    const games: any[] = []
+    state.gameDataRaw.forEach(item => {
+      games.push(new Game(item.Item))
+    })
+    return games
+  }
 }
 
 export const mutations = {
@@ -54,8 +63,6 @@ export const mutations = {
 
   setGameDataRaw: function (state, gameDataRaw) {
     state.gameDataRaw = gameDataRaw
-    console.log("ログだよ")
-    console.log(gameDataRaw)
   },
 
   caughtException: function (state) {
@@ -100,7 +107,7 @@ export const actions = {
 
   fetchRakutenGames: async function (context) {
     try {
-      const gameDataRaw = RakutenGamesRepository.fetchRaw()
+      const gameDataRaw = await RakutenGamesRepository.fetchRaw()
       context.commit('setGameDataRaw', gameDataRaw)
     } catch (e) {
       console.log(e)

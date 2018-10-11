@@ -17,28 +17,26 @@
 <script>
   import TestComponent from '~/components/TestComponent.vue'
   import AppButton from '../layouts/atom/AppButton.vue'
-  import RxTest from '~/components/RxTest.vue'
-
 
   import { mapGetters, mapActions } from 'vuex';
 
   export default {
-    async asyncData (store) {
+    async asyncData ({store}) {
       try {
-        console.log(store.dispatch('fetchRakutenGames'))
+        await store.dispatch('fetchRakutenGames')
       } catch (e) {
       }
     },
     components: {
       TestComponent,
       AppButton,
-      RxTest,
     },
 
     computed: {
       ...mapGetters([
         'isLoading',
         'isError',
+        'gameList'
       ]),
     },
     methods: {
@@ -46,6 +44,10 @@
         'fetch',
         'fetchRakutenGames'
       ]),
+    },
+    created() {
+      console.log("gameListだよー")
+      console.log(this.gameList)
     }
   }
 </script>
