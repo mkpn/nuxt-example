@@ -1,8 +1,5 @@
 <template>
   <section class="container">
-    <div>
-      <button @click="fetchRakutenGames">ゲームをfetchする</button>
-    </div>
 
     <div class="loading-view" v-if="isLoading">
       <p>Loading...</p>

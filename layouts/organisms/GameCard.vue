@@ -1,12 +1,15 @@
 <template>
   <div class="card">
     <div class="content">
-      <h3>{{ game }}
-      </h3>
 
-      <p>Card which uses the background colour to show progress.</p>
       <!--<p class="percentage">70%</p>-->
-      <MyImage :resourceUrl=game.largeImageUrl />
+      <MyImage class="image"
+               :resourceUrl=game.largeImageUrl />
+      <div>{{ game.title }}({{game.label}})</div>
+      <div>発売日: {{ game.salesDate }}</div>
+      <div>{{ game.hardware }}</div>
+      <div>{{ game.itemPrice }}円</div>
+      <div>レビュー: {{ game.reviewAverage }}({{game.reviewCount}})</div>
     </div>
   </div>
 </template>
@@ -32,18 +35,21 @@
 
 <style scoped>
   .card {
-    background-color: #ffea5f;
+    background-color: #f0eff4;
     box-sizing: border-box;
-    float: left;
-    height: 10em;
+    height: auto;
+    width: auto;
     margin: .5em;
     padding: 1em;
     position: relative;
-    width: 20em;
   }
 
   .content {
     position: relative;
+  }
+
+  .image {
+    width: 100px
   }
 
   @keyframes slideIn {
