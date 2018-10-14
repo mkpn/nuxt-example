@@ -1,38 +1,32 @@
 <template>
   <div class="card">
     <div class="content">
-      <h3>{{ weatherTelop }}
+      <h3>{{ game }}
       </h3>
 
       <p>Card which uses the background colour to show progress.</p>
       <!--<p class="percentage">70%</p>-->
-      <MyImage :resourceUrl=weatherIconUrl />
+      <MyImage :resourceUrl=game.largeImageUrl />
     </div>
   </div>
 </template>
 
 <script>
   import MyImage from '../atom/Image/ImageIndex'
+  import Game from '../../entity/Game'
 
   export default {
-    name: "WeatherCard.vue",
+    name: "GameCard.vue",
     components: {
       MyImage,
     },
     props: {
-      weatherTelop: {
-        type: String,
-        default: ""
-      },
-      weatherStatus: {
-        type: String,
-        default: "晴れ"
-      },
-      weatherIconUrl: {
-        type: String,
-        default: ""
+      game: {
+        type: Game,
+        required: true
       }
     },
+
   }
 </script>
 

@@ -8,6 +8,12 @@
       <p>Loading...</p>
     </div>
 
+    <template v-for="(game, index) in gameList">
+      <GameCard
+        v-bind:key="index"
+        :game = "game"/>
+    </template>
+
     <div class="loading-view" v-if="isError">
       <p>Errorだよぉ！！！！</p>
     </div>
@@ -17,6 +23,7 @@
 <script>
   import TestComponent from '~/components/TestComponent.vue'
   import AppButton from '../layouts/atom/AppButton.vue'
+  import GameCard from '../layouts/organisms/GameCard.vue'
 
   import { mapGetters, mapActions } from 'vuex';
 
@@ -30,6 +37,7 @@
     components: {
       TestComponent,
       AppButton,
+      GameCard
     },
 
     computed: {
@@ -44,10 +52,6 @@
         'fetch',
         'fetchRakutenGames'
       ]),
-    },
-    created() {
-      console.log("gameListだよー")
-      console.log(this.gameList)
     }
   }
 </script>
