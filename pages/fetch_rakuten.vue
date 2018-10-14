@@ -8,7 +8,8 @@
     <template v-for="(game, index) in gameList">
       <GameCard
         v-bind:key="index"
-        :game = "game"/>
+        :game = "game"
+        @onCardClick="showSlideInSheet(game)"/>
     </template>
 
     <div class="loading-view" v-if="isError">
@@ -49,6 +50,10 @@
         'fetch',
         'fetchRakutenGames'
       ]),
+      showSlideInSheet(game){
+        console.log("デバッグー")
+        console.log(game)
+      }
     }
   }
 </script>

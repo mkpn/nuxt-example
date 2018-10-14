@@ -1,8 +1,7 @@
 <template>
-  <div class="card">
+  <div class="card"
+       @click.prevent="$emit('onCardClick')">
     <div class="content">
-
-      <!--<p class="percentage">70%</p>-->
       <MyImage class="image"
                :resourceUrl=game.largeImageUrl />
       <div>{{ game.title }}({{game.label}})</div>
@@ -28,8 +27,7 @@
         type: Game,
         required: true
       }
-    },
-
+    }
   }
 </script>
 
