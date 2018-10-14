@@ -25,7 +25,7 @@
 </template>
 
 <style lang="scss" scoped>
-  @import "~assets/css/settings/all";
+
 
   .slideInSheet {
     position: fixed;
