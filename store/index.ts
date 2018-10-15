@@ -3,7 +3,9 @@ import axios from 'axios'
 import WeatherRepositroy from '../repository/WeatherRepository'
 import VideoRepositroy from '../repository/VideoRepository'
 import RakutenGamesRepository from '../repository/RakutenGamesRepository'
-import Game from "~/entity/Game";
+import Game from "~/entity/Game"
+// import cloneDeep from 'lodash/cloneDeep'
+
 
 export const state = () => ({
   time: new Time(), // 初期値ってどうするのが良いプラクティスなんだろ
@@ -12,6 +14,7 @@ export const state = () => ({
   gameDataRaw: "",
   isLoading: false,
   isError: false,
+  bodyComponent: null,
 })
 
 export const getters = {
@@ -35,6 +38,12 @@ export const getters = {
       games.push(new Game(item.Item))
     })
     return games
+  },
+  bodyComponent (state) {
+    return state.bodyComponent
+  },
+  isShow (state) {
+    return !!state.bodyComponent
   }
 }
 
@@ -68,6 +77,15 @@ export const mutations = {
   caughtException: function (state) {
     state.isError = true
   },
+
+  SET_SETTINGS (state, bodyComponent) {
+    console.log('SET SETTINGだよ')
+    console.log(bodyComponent)
+    state.bodyComponent = bodyComponent
+  },
+  INIT_SETTINGS (state) {
+    // state.settings = cloneDeep(initialSettings)
+  }
 }
 
 export const actions = {
@@ -115,4 +133,10 @@ export const actions = {
       context.commit('finishLoading')
     }
   },
+  showSlideInSheet: async function (context, bodyComponent) {
+    context.commit('SET_SETTINGS', bodyComponent)
+  },
+  hideSlideInSheet ({ commit }) {
+    commit('INIT_SETTINGS')
+  }
 }

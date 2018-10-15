@@ -9,12 +9,13 @@
       <GameCard
         v-bind:key="index"
         :game = "game"
-        @onCardClick="showSlideInSheet(game)"/>
+        @onCardClick="showGameSlideInSheet(game)"/>
     </template>
 
     <div class="loading-view" v-if="isError">
       <p>Errorだよぉ！！！！</p>
     </div>
+    <SlideInSheet/>
   </section>
 </template>
 
@@ -22,6 +23,8 @@
   import TestComponent from '~/components/TestComponent.vue'
   import AppButton from '../layouts/atom/AppButton.vue'
   import GameCard from '../layouts/organisms/GameCard.vue'
+  import GameDetailSlideSheet from '../layouts/organisms/GameDetailSlideSheet'
+  import SlideInSheet from '../layouts/organisms/SlideInSheet'
 
   import { mapGetters, mapActions } from 'vuex';
 
@@ -35,7 +38,8 @@
     components: {
       TestComponent,
       AppButton,
-      GameCard
+      GameCard,
+      SlideInSheet
     },
 
     computed: {
@@ -48,11 +52,12 @@
     methods: {
       ...mapActions([
         'fetch',
-        'fetchRakutenGames'
+        'fetchRakutenGames',
+        'showSlideInSheet'
       ]),
-      showSlideInSheet(game){
-        console.log("デバッグー")
-        console.log(game)
+      showGameSlideInSheet(game){
+        GameDetailSlideSheet.props.game = game
+        this.showSlideInSheet(GameDetailSlideSheet)
       }
     }
   }

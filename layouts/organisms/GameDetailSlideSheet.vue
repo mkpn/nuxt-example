@@ -11,25 +11,26 @@
 
     <div
       slot="action"
-      :disabled="validationTopic.hasError || isPosting"
     >アクションリンク
     </div>
 
     <div>
       <h3>タイトル</h3>
-      <MyImage class="image"
-               :resourceUrl="game.largeImageUrl"/>
-      <div>{{ game.title }}({{game.label}})</div>
-      <div>発売日: {{ game.salesDate }}</div>
-      <div>{{ game.hardware }}</div>
-      <div>{{ game.itemPrice }}円</div>
-      <div>レビュー: {{ game.reviewAverage }}({{game.reviewCount}})</div>
+      <div>とりあえず仮で適当な文字を出すよ</div>
+      <!--<MyImage class="image"-->
+               <!--:resourceUrl="game.largeImageUrl"/>-->
+      <!--<div>{{ game.title }}({{game.label}})</div>-->
+      <!--<div>発売日: {{ game.salesDate }}</div>-->
+      <!--<div>{{ game.hardware }}</div>-->
+      <!--<div>{{ game.itemPrice }}円</div>-->
+      <!--<div>レビュー: {{ game.reviewAverage }}({{game.reviewCount}})</div>-->
     </div>
 
   </SlideInSheetLayout>
 </template>
 
 <script>
+  import { mapActions } from 'vuex'
   import MyImage from '../atom/Image/ImageIndex'
   import SlideInSheetLayout from '../molecules/SlideInSheetLayout.vue'
   import Game from '../../entity/Game'
@@ -42,9 +43,13 @@
     },
     props: {
       game: {
-        type: Game,
-        required: true
+        type: Game
       }
+    },
+    method: {
+      ...mapActions([
+        'hideSlideInSheet'
+      ]),
     }
   }
 </script>

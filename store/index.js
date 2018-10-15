@@ -46,6 +46,7 @@ export var state = function () { return ({
     gameDataRaw: "",
     isLoading: false,
     isError: false,
+    bodyComponent: null,
 }); };
 export var getters = {
     isLoading: function (state) { return state.isLoading; },
@@ -61,6 +62,12 @@ export var getters = {
             games.push(new Game(item.Item));
         });
         return games;
+    },
+    bodyComponent: function (state) {
+        return state.bodyComponent;
+    },
+    isShow: function (state) {
+        return !!state.bodyComponent;
     }
 };
 export var mutations = {
@@ -87,6 +94,13 @@ export var mutations = {
     caughtException: function (state) {
         state.isError = true;
     },
+    SET_SETTINGS: function (state, bodyComponent) {
+        console.log('SET SETTINGだよ');
+        console.log(bodyComponent);
+        state.bodyComponent = bodyComponent;
+    },
+    INIT_SETTINGS: function (state) {
+    }
 };
 export var actions = {
     fetch: function (context) {
@@ -177,4 +191,16 @@ export var actions = {
             });
         });
     },
+    showSlideInSheet: function (context, bodyComponent) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                context.commit('SET_SETTINGS', bodyComponent);
+                return [2];
+            });
+        });
+    },
+    hideSlideInSheet: function (_a) {
+        var commit = _a.commit;
+        commit('INIT_SETTINGS');
+    }
 };
